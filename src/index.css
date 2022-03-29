@@ -1,13 +1,37 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  font-size: 1.1rem;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#root {
+  max-width: 650px;
+  margin: 20px auto;
+}
+
+.form-input {
+
+}
+
+.btn-save {
+
+}
+
+.btn-edit, .btn-remove {
+  width: 27px;
+  height: 27px;
+  margin: 2px;
+}
+
+.btn-remove {
+
+}
+
+.item-text {
+  margin-right: 10px;
+  align-self: flex-end;
+}
+
+.list > li {
+  display: flex;
 }
