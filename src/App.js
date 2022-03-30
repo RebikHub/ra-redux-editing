@@ -1,10 +1,11 @@
 import { nanoid } from "nanoid";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addItemStore, deleteItemStore, editItemStore } from "./store/listReducer"
+import { addItemStore, deleteItemStore, editItemStore, filterItemStore } from "./store/listReducer"
 
 import Form from "./components/Form";
 import ItemsList from "./components/ItemsList";
+import Filter from "./components/Filter";
 
 export default function App() {
   const [input, setInput] = useState({
@@ -13,7 +14,12 @@ export default function App() {
   })
   const [edit, setEdit] = useState(false)
   const [editId, setEditId] = useState(null)
+  const [search, setSearch] = useState({
+    start: false,
+    input: ''
+  })
   const storeItems = useSelector((state) => state.listReducer.items)
+  const filterList = useSelector((state) => state.listReducer.filterItems)
   const dispatch = useDispatch()
 
   function inputName(ev) {
@@ -37,7 +43,6 @@ export default function App() {
         price: ''
       })
     } else if (input.name !== '' && input.price !== '' && edit) {
-      console.log(editId);
       dispatch(editItemStore({
         name: input.name,
         price: input.price,
@@ -58,6 +63,12 @@ export default function App() {
     })
     setEdit(true)
     setEditId(item.id)
+    if (search.start) {
+      setSearch({
+        start: false,
+        input: ''
+      })
+    }
   }
 
   function removeItem(item) {
@@ -68,6 +79,12 @@ export default function App() {
     })
     setEdit(false)
     setEditId(null)
+    if (search.start) {
+      setSearch({
+        start: false,
+        input: ''
+      })
+    }
   }
 
   function cancelEdit() {
@@ -79,8 +96,24 @@ export default function App() {
     setEditId(null)
   }
 
+  function inputSearch(ev) {
+    setSearch({
+      start: true,
+      input: ev.target.value
+    })
+    dispatch(filterItemStore(ev.target.value))
+  }
+
+  function cancelFilter() {
+    setSearch({
+      start: false,
+      input: ''
+    })
+  }
+
   return (
     <div className="App">
+      <Filter search={search.input} inputSearch={inputSearch} cancelFilter={cancelFilter}/>
       <Form
         name={input.name}
         price={input.price}
@@ -89,7 +122,7 @@ export default function App() {
         addItem={addItem}
         edit={edit}
         cancelEdit={cancelEdit}/>
-      <ItemsList list={storeItems} editItem={editItem} removeItem={removeItem}/>
+      <ItemsList list={search.start ? filterList : storeItems} editItem={editItem} removeItem={removeItem}/>
     </div>
   );
 }

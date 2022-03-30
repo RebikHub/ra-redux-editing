@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 export const listReducer = createSlice({
   name: 'listReducer',
   initialState: {
-    items: []
+    items: [],
+    filterItems: []
   },
   reducers: {
     addItemStore: (state, action) => {
@@ -20,9 +21,16 @@ export const listReducer = createSlice({
         price: price,
         id: id
       }
+    },
+    filterItemStore: (state, action) => {
+      state.filterItems = state.items.filter((el) => el.name.includes(action.payload))
     }
   }
 })
 
-export const { addItemStore, deleteItemStore, editItemStore } = listReducer.actions
+export const {
+  addItemStore,
+  deleteItemStore,
+  editItemStore,
+  filterItemStore } = listReducer.actions
 export default listReducer.reducer

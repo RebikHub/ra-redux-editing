@@ -12,9 +12,11 @@ export default function Form({
   return (
     <form className="form-input">
       <input type="text"
+      placeholder=' name'
         value={name}
         onChange={inputName} />
       <input type="text"
+        placeholder=' price'
         value={price}
         onChange={inputPrice} />
       <button type="button"
