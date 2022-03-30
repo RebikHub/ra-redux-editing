@@ -1,3 +1,4 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/lsgwq2o3lpd5cdn5/branch/master?svg=true)](https://ci.appveyor.com/project/RebikHub/ra-redux-editing/branch/master)
 
 [Редактирование](https://rebikhub.github.io/ra-redux-editing/)
 
