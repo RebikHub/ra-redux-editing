@@ -23,8 +23,16 @@
   margin: 2px;
 }
 
-.btn-remove {
+.btn-edit {
+  background-image: url(../image/edit.png);
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
+.btn-remove {
+  background-image: url(../image/remove.png);
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .item-text {

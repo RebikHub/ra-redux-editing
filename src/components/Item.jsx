@@ -1,11 +1,13 @@
 import React from 'react'
-import ButtonsEdit from './ButtonsEdit'
 
-export default function Item({text}) {
+export default function Item({item, editItem, removeItem}) {
   return (
     <li>
-      <p className="item-text">{text}</p>
-      <ButtonsEdit/>
+      <p className="item-text">{`${item.name} ${item.price}`}</p>
+      <div>
+        <button className="btn-edit" onClick={() => editItem(item)}></button>
+        <button className="btn-remove" onClick={() => removeItem(item)}></button>
+      </div>
     </li>
   )
 }

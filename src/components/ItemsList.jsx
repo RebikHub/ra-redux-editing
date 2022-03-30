@@ -1,10 +1,14 @@
 import React from 'react'
 import Item from './Item'
 
-export default function ItemsList(props) {
+export default function ItemsList({list, editItem, removeItem}) {
   return (
     <ul className="list">
-      {props.list.map((el) => <Item text={el.text} key={el.id}/>)}
+      {list.map((el) => <Item
+        item={el}
+        key={el.id}
+        editItem={editItem}
+        removeItem={removeItem}/>)}
     </ul>
   )
 }
